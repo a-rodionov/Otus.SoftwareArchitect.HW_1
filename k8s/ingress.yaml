@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: otus-arch-hw-1-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: arch-homework
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/otusapp/rodionov_andrey(/|$)(.*)"
+            backend:
+              service:
+                name: otus-arch-hw-1-service
+                port:
+                  number: 9000
